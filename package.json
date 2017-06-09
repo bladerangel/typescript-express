@@ -1,0 +1,25 @@
+{
+  "name": "typescript-express",
+  "version": "0.0.1",
+  "description": "A starting point for Node.js express apps with TypeScript",
+  "author": "Pedro Rangel",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run build && npm run watch",
+    "build": "npm run build-ts",
+    "serve": "node dist/server.js",
+    "watch": " concurrently -k -p \"[{name}]\" -n \"npm run watch-ts\" \"nodemon dist/server.js\"",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w"
+  },
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.29",
+    "concurrently": "^3.4.0",
+    "nodemon": "^1.11.0",
+    "typescript": "^2.3.4"
+  }
+}
