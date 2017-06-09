@@ -1,14 +1,31 @@
 /**
  * Created by Rangel on 09/06/2017.
  */
-import * as express from "express";
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import TestRouter from './routes';
 
-const app = express()
+class Server {
 
-app.get('/', function (req, res) {
-    res.send('Hello World!')
-})
+    public express: express.Application;
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
-})
+    constructor() {
+        this.express = express();
+        this.middleware();
+        this.routes();
+    }
+
+    private middleware(): void {
+        this.express.use(bodyParser.json());
+        this.express.use(bodyParser.urlencoded({extended: false}));
+    }
+
+    private routes(): void {
+        this.express.use('/api/', TestRouter);
+    }
+}
+
+export default new Server().express;
+
+
+
